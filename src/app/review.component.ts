@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'review',
     templateUrl: './review.component.html'
 })
 
-export class ReviewComponent {}
+export class ReviewComponent {
+    @Input() review: any;
+
+    
+}
