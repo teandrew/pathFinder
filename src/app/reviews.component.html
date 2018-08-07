@@ -1,10 +1,11 @@
 <div>
     <!--<add-review></add-review>-->
+    <add-review></add-review>
     <div>
         <!-- ng For let review of reviews-->
-        <div>
+        <div *ngFor="let review of reviews">
             <!-- Individual Review -->
-            <review></review>
+            <review [review]="review"></review>
         </div>
     </div>
 

@@ -8,11 +8,14 @@ import { ReviewService } from './review.service';
 })
 
 export class ReviewsComponent implements OnInit {
-    
+    reviews: Object;
+
     constructor(private rs: ReviewService) {}
 
     ngOnInit() {
-        
+        this.rs.getReviews().subscribe(data => {
+            this.reviews = data;
+        })
     }
 
     addReview() {

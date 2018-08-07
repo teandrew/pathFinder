@@ -11,16 +11,21 @@ export class ReviewService {
     // 1) All required fields are filled out
     // 2) Check if cookie exists, else create
     // 3) If cookie exists and no review then add new review
+    addCookie(c_id: string) {
+        const cookieCollection = this.db.collection('cookies');
+
+        this.cs.set('c_id', c_id);
+        return cookieCollection.add({'_id': c_id}).catch(err => { return console.error(err)});
+    }
+
     addReview(review: Object): any {
         const reviewsCollection = this.db.collection('reviews');
-        let cookie_id = '';
+        let cookie_id = this.cs.get('c_id');
         let review_copy = review;
 
         // Create cookie if not already done
-        if (!this.cs.check('c_id'))
+        if (cookie_id == '')
             cookie_id = this.createCookieID();
-        else
-            cookie_id = this.cs.get('c_id');
         
         review_copy['reviewedBy'] = cookie_id;
 
@@ -28,7 +33,22 @@ export class ReviewService {
             return this.addCookie(cookie_id);
         })
         .catch(er => console.error(er));
-    }  
+    }
+
+    add(review: Object): any {
+        let cookie_id = this.cs.get('c_id');
+        let review_copy = review;
+        
+        if (cookie_id == '')
+            cookie_id = this.createCookieID();
+        
+        review_copy['reviewedBy'] = cookie_id;
+        console.log(review);
+    } 
+
+    checkCookie() {
+        return this.cs.check('c_id');
+    }
 
     createCookieID(): string {
         var cid = "";
@@ -39,12 +59,9 @@ export class ReviewService {
         
         return cid;
     }
-
-    addCookie(c_id: string) {
-        const cookieCollection = this.db.collection('cookies');
-
-        this.cs.set('c_id', c_id);
-        return cookieCollection.add({'_id': c_id}).catch(err => { return console.error(err)});
+    
+    getCookie() {
+        return this.cs.get('c_id');
     }
 
     getCourseReviews(course_id: string) {

@@ -3,15 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 
 // Components
 import { CourseComponent } from '../course.component';
+import { HomeInstitutionComponent } from '../home-institution.component';
 
 const appRoutes: Routes = [
-    {
-        path: '', component: CourseComponent 
-    }
+    { path: 'home', component: CourseComponent },
+    { path: '', component: HomeInstitutionComponent }
 ]
 
 @NgModule({
-    imports: [ RouterModule.forRoot(appRoutes)],
+    imports: [ RouterModule.forRoot(appRoutes, {enableTracing: true})],
     exports: [ RouterModule ],
 })
 

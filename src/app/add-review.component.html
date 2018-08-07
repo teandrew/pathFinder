@@ -1,0 +1,37 @@
+<div class="">
+    <form [formGroup]="reviewForm">
+        <div>
+            <label>Term:*</label>
+            <select formControlName="term">
+                <option>Fall</option>
+                <option>Winter</option>
+                <option>Summer</option>
+            </select>
+        </div>
+        <div>
+            <label>Year:*</label>
+            <input formControlName="year" maxlength="4" type="text" placeholder="e.g. 2018">
+        </div>
+        <div>
+            <label>Professor:*</label>
+            <input formControlName="professor" type="text" placeholder="e.g Larry Zhang">
+        </div>
+        <div>
+            <label>Interesting:</label>
+            <input formControlName="interesting" min="1" max="5" value="3" type="range">
+        </div>
+        <div>
+            <label>Difficulty:</label>
+            <input formControlName="difficulty" min="1" max="5" value="3" type="range">
+        </div>
+        <div>
+            <label>Comment:</label>
+            <textarea formControlName="comment" type="text"></textarea>
+        </div>
+    </form>
+    <button (click)="submitReview()" [disabled]="!reviewForm.valid">Submit Review</button>
+</div>
+
+
+<p> Form: {{ reviewForm.value | json }}</p>
+<p> Valid: {{ reviewForm.valid }}</p>
