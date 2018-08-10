@@ -46,6 +46,7 @@ section {
 .inst-select-wrapper {
     position: relative;
     display: inline-block;
+    margin-right: 20px;
 }
 
 .inst-select {
@@ -136,4 +137,30 @@ section {
     line-height: 47px;
     cursor: pointer;
     transition: all .4s ease-in-out;
+}
+
+.button.is-warning:hover {
+    color: white;
+}
+
+.campus-full {
+    display: inline-block;
+}
+
+.campus-short {
+    display: inline-block;
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+    background-color: #003873;
+    padding: 10px;
+    border: none;
+    border-radius: 50px;
+}
+
+.campus-option {
+    background: #e0e0e0;
+    border: none;
+    border-radius: 35px;
+    margin-bottom: 20px;
 }
