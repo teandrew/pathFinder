@@ -4,10 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 // Components
 import { CourseComponent } from '../course/course.component';
 import { HomeInstitutionComponent } from '../home-institution/home-institution.component';
+import { ExploreComponent } from '../explore/explore.component';
 
 const appRoutes: Routes = [
-    { path: 'home', component: CourseComponent },
-    { path: '', component: HomeInstitutionComponent }
+    { path: 'course/:id', component: CourseComponent },
+    { path: '', component: HomeInstitutionComponent },
+    { path: 'explore/:campus', component: ExploreComponent },
+    { path: '**', redirectTo: '' } 
 ]
 
 @NgModule({

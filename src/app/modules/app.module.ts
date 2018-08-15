@@ -22,6 +22,7 @@ import { ReviewComponent } from '../review/review.component';
 
 // Environment
 import { environment } from '../../environments/environment';
+import { ExploreComponent } from '../explore/explore.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { environment } from '../../environments/environment';
     CourseComponent,
     HomeInstitutionComponent,
     ReviewComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    ExploreComponent
   ],
   imports: [
     AngularFireModule,
