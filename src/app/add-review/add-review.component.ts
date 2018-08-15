@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ReviewService } from './review.service';
+import { ReviewService } from '../review.service';
 
 @Component({
     selector: 'add-review',

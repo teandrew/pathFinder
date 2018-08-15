@@ -12,13 +12,13 @@ import { CourseService } from '../course.service';
 import { ReviewService } from '../review.service';
 
 // Components
-import { AddReviewComponent } from '../add-review.component';
-import { AppComponent } from '../app.component';
-import { AppNavComponent } from '../app-nav.component';
-import { CourseComponent } from '../course.component';
-import { HomeInstitutionComponent } from '../home-institution.component';
-import { ReviewsComponent } from '../reviews.component';
-import { ReviewComponent } from '../review.component';
+import { AddReviewComponent } from '../add-review/add-review.component';
+import { AppComponent } from '../app/app.component';
+import { AppNavComponent } from '../app-nav/app-nav.component';
+import { CourseComponent } from '../course/course.component';
+import { HomeInstitutionComponent } from '../home-institution/home-institution.component';
+import { ReviewsComponent } from '../reviews/reviews.component';
+import { ReviewComponent } from '../review/review.component';
 
 // Environment
 import { environment } from '../../environments/environment';

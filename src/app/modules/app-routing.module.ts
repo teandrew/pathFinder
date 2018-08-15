@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // Components
-import { CourseComponent } from '../course.component';
-import { HomeInstitutionComponent } from '../home-institution.component';
+import { CourseComponent } from '../course/course.component';
+import { HomeInstitutionComponent } from '../home-institution/home-institution.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: CourseComponent },

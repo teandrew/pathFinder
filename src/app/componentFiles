@@ -1,0 +1,17 @@
+add-review.component.html
+add-review.component.ts
+app-nav.component.html
+app-nav.component.ts
+app.component.css
+app.component.html
+app.component.spec.ts
+app.component.ts
+componentFiles
+course.component.html
+course.component.ts
+home-institution.component.html
+home-institution.component.ts
+review.component.html
+review.component.ts
+reviews.component.html
+reviews.component.ts

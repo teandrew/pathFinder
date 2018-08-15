@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ReviewService } from './review.service';
+import { ReviewService } from '../review.service';
 
 @Component({
     selector: 'reviews',
