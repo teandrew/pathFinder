@@ -3,6 +3,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -41,6 +42,7 @@ import { ExploreComponent } from '../explore/explore.component';
     AngularFirestoreModule,
     AppRoutingModule,
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [ CookieService, CourseService, ReviewService ],

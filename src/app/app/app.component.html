@@ -1,6 +1,23 @@
 <!-- Navigation -->
 <app-nav></app-nav>
-<router-outlet></router-outlet>
+<router-outlet>
+    <div class="feedback">
+        <div class="feedback-cont mb-5" *ngIf="showFeedback">
+          <div class="mb-5"><label>What do you think of this tool?</label></div>
+          <div class="columns mb-5">
+            <span *ngFor="let emote of feedbackEmotes"
+            class="feedback-emote column"
+            [ngClass]="{'active': emote.isActive}" (click)="setToActive(emote)">
+              <i class="{{ emote.class }}"></i></span>
+          </div>
+          <label>Comments</label>
+          <textarea class="textarea mb-5" placeholder="Let me know what this tool could improve on!"></textarea>
+        </div>
+        <a class="feedback-btn" (click)="triggerFeedback()">
+            <span><i class="fas fa-envelope fa-2x"></i></span>
+        </a>
+    </div>
+</router-outlet>
 
 <!-- Footer -->
 

@@ -7,7 +7,7 @@ export class CourseService {
 
     constructor(private db: AngularFirestore) {}
 
-    getCourses() {
+    getCourses(campus: String) {
         const coursesCollection = this.db.collection('courses');
         return coursesCollection.valueChanges();
     }

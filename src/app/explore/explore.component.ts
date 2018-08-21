@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { CourseService } from '../course.service';
+
+import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'explore',
@@ -7,47 +12,60 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 
 export class ExploreComponent implements OnInit {
-  public campus: string = '';
-  public loading: boolean = false;
-  public searchVal: string = '';
-  public allCourses = [
-    {
-      code: 'EXE105',
-      name: 'Example Course',
-      department: 'Example Dept'
-    },
-    {
-      code: 'FRE300',
-      name: 'French Courtirielle',
-      department: 'Dept of French'
-    },
-    {
-      code: 'FRE300',
-      name: 'French Courtirielle',
-      department: 'Example Dept'
-    },
-    {
-      code: 'FRE300',
-      name: 'French Courtirielle',
-      department: 'Example Dept'
-    },
-    {
-      code: 'CRE300',
-      name: 'French Courtirielle',
-      department: 'Cours ep'
-    }
-  ]
-
-  constructor(private ar: ActivatedRoute) { }
+  campus: string = '';
+  searchBy: string;
+  searchVal: string = '';
+  loading: boolean = false;
+  allCourses;
+  numOfCourses = 0;
+  public searchCriteria = [
+    {by: 'Course Code', isActive: true},
+    {by: 'Course Name', isActive: false}];
+  private searchString$ = new Subject<string>();
+  courses$: Observable<any[]>;
+  
+  constructor(private ar: ActivatedRoute, public cs: CourseService) {
+  }
 
   ngOnInit() {
+    this.searchBy = this.searchCriteria[0].by;
     this.ar.params.subscribe((params: Params) => {
       this.campus = params['campus'];
+      this.loading = true;
+      this.cs.getCourses(this.campus).subscribe(courses => {
+        this.allCourses = courses;
+        this.numOfCourses = this.allCourses.length;
+        this.loading = false;
+      })
     })
+
+    this.courses$ = this.searchString$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((term: string) => this.cs.getCourses(term))
+    );
   }
 
-  updateKeyword(keyword: string) {
-    this.searchVal = keyword;
+  clearSearch() {
+    this.searchVal = '';
   }
 
+  setActive(crit: Object) {
+    this.searchBy = crit['by'];
+    for (var i =0;i < this.searchCriteria.length; i++) {
+      if (crit['by'] == this.searchCriteria[i].by)
+        this.searchCriteria[i].isActive = true;
+      else 
+        this.searchCriteria[i].isActive = false
+    }
+  }
+
+  search(text: string) {
+    this.searchVal = text;
+    this.searchString$.next(text);
+  }
+
+  setSearchBy(event: any) {
+    this.searchBy = event;
+  }
 }
