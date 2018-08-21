@@ -5,12 +5,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { CourseComponent } from '../course/course.component';
 import { HomeInstitutionComponent } from '../home-institution/home-institution.component';
 import { ExploreComponent } from '../explore/explore.component';
+import { NotFoundComponent } from '../not-found/not-found.component';
 
 const appRoutes: Routes = [
     { path: 'course/:id', component: CourseComponent },
     { path: '', component: HomeInstitutionComponent },
     { path: 'explore/:campus', component: ExploreComponent },
-    { path: '**', redirectTo: '' } 
+    { path: '**', component: NotFoundComponent } 
 ]
 
 @NgModule({

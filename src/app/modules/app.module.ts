@@ -18,6 +18,7 @@ import { AppComponent } from '../app/app.component';
 import { AppNavComponent } from '../app-nav/app-nav.component';
 import { CourseComponent } from '../course/course.component';
 import { HomeInstitutionComponent } from '../home-institution/home-institution.component';
+import { NotFoundComponent } from '../not-found/not-found.component'; 
 import { ReviewsComponent } from '../reviews/reviews.component';
 import { ReviewComponent } from '../review/review.component';
 
@@ -32,6 +33,7 @@ import { ExploreComponent } from '../explore/explore.component';
     AppNavComponent,
     CourseComponent,
     HomeInstitutionComponent,
+    NotFoundComponent,
     ReviewComponent,
     ReviewsComponent,
     ExploreComponent
