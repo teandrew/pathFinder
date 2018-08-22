@@ -69,12 +69,19 @@
           <span class="column">DEPARTMENT</span>   
         </div>
 
-        <div class="columns course" *ngFor="let course of courses$ | async">
-          <span class="column is-2">RATING</span>
-          <span class="column is-one-fifths">{{ course?.code }}</span>
-          <span class="column is-4">{{ course?.name }}</span>
-          <span class="column">{{ course?.department }}</span>
-        </div>
+        <ng-container *ngIf="!loading else searching">
+					<div class="columns course" *ngFor="let course of allCourses">
+						<span class="column is-2">RATING</span>
+						<span class="column is-one-fifths">{{ course?.code }}</span>
+						<span class="column is-4">{{ course?.name }}</span>
+						<span class="column">{{ course?.department }}</span>
+					</div>
+				</ng-container>
+				<ng-template #searching>
+          <div class="columns loading-cont">
+            <div class="loading"><div></div><div></div><div></div></div>
+					</div>
+				</ng-template>
       </div>
 
 		</div>

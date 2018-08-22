@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { CourseService } from '../course.service';
 
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, tap} from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -16,13 +16,13 @@ export class ExploreComponent implements OnInit {
   searchBy: string;
   searchVal: string = '';
   loading: boolean = false;
+  ask: boolean;
   allCourses;
+  filteredCourses;
   numOfCourses = 0;
   public searchCriteria = [
     {by: 'Course Code', isActive: true},
     {by: 'Course Name', isActive: false}];
-  private searchString$ = new Subject<string>();
-  courses$: Observable<any[]>;
   
   constructor(private ar: ActivatedRoute, public cs: CourseService) {
   }
@@ -31,19 +31,16 @@ export class ExploreComponent implements OnInit {
     this.searchBy = this.searchCriteria[0].by;
     this.ar.params.subscribe((params: Params) => {
       this.campus = params['campus'];
-      this.loading = true;
-      this.cs.getCourses(this.campus).subscribe(courses => {
-        this.allCourses = courses;
-        this.numOfCourses = this.allCourses.length;
-        this.loading = false;
-      })
     })
-
+    /*
     this.courses$ = this.searchString$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap((term: string) => this.cs.getCourses(term))
+      tap(() => this.loading = false),
+      switchMap((term: string) => { return this.cs.getCourses(term)}),
+      tap(() => this.loading = false),
     );
+    */
   }
 
   clearSearch() {
@@ -62,10 +59,20 @@ export class ExploreComponent implements OnInit {
 
   search(text: string) {
     this.searchVal = text;
-    this.searchString$.next(text);
+    if (!text)
+      return;
+    /* this.searchString$.next(text); */
+    this.loading = true;
+    this.cs.getCourses(this.campus, this.searchVal).subscribe(courses => {
+        this.allCourses = courses;
+        this.numOfCourses = this.allCourses.length;
+        this.loading = false;
+    })
   }
 
   setSearchBy(event: any) {
     this.searchBy = event;
   }
+
+
 }
