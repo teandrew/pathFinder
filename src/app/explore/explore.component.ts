@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CourseService } from '../course.service';
 
-import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
+import { Observable, BehaviorSubject, combineLatest, Subject, from } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, tap} from 'rxjs/operators';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'explore',
@@ -12,67 +11,63 @@ import { Subject } from 'rxjs';
 })
 
 export class ExploreComponent implements OnInit {
+  addingFilters = false;
+  allCourses: any[];
   campus: string = '';
-  searchBy: string;
-  searchVal: string = '';
-  loading: boolean = false;
-  ask: boolean;
-  allCourses;
-  filteredCourses;
+  departments: any[];
+  loading: boolean;
+  tags = [];
   numOfCourses = 0;
-  public searchCriteria = [
-    {by: 'Course Code', isActive: true},
-    {by: 'Course Name', isActive: false}];
+
+  showOptions: boolean = false;
+  selectedDepart = 'Select Department';
   
   constructor(private ar: ActivatedRoute, public cs: CourseService) {
   }
 
   ngOnInit() {
-    this.searchBy = this.searchCriteria[0].by;
     this.ar.params.subscribe((params: Params) => {
       this.campus = params['campus'];
-    })
-    /*
-    this.courses$ = this.searchString$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      tap(() => this.loading = false),
-      switchMap((term: string) => { return this.cs.getCourses(term)}),
-      tap(() => this.loading = false),
-    );
-    */
+    }) 
+    this.cs.getDepartments()
+      .subscribe(departs => this.departments = departs); 
   }
 
-  clearSearch() {
-    this.searchVal = '';
-  }
-
-  setActive(crit: Object) {
-    this.searchBy = crit['by'];
-    for (var i =0;i < this.searchCriteria.length; i++) {
-      if (crit['by'] == this.searchCriteria[i].by)
-        this.searchCriteria[i].isActive = true;
-      else 
-        this.searchCriteria[i].isActive = false
-    }
-  }
-
-  search(text: string) {
-    this.searchVal = text;
-    if (!text)
-      return;
-    /* this.searchString$.next(text); */
+  getCourses(campus: string, department: string) {
     this.loading = true;
-    this.cs.getCourses(this.campus, this.searchVal).subscribe(courses => {
-        this.allCourses = courses;
-        this.numOfCourses = this.allCourses.length;
-        this.loading = false;
+    this.cs.getCourses(campus, department).subscribe(courses => {
+      this.allCourses = courses;
+      this.loading = false;
     })
   }
 
-  setSearchBy(event: any) {
-    this.searchBy = event;
+  setShowOptions() {
+    this.showOptions = !this.showOptions;
   }
 
+  selectDepart(val: string) {
+    this.selectedDepart = val;
+    this.setShowOptions();
+    this.getCourses(this.campus, this.selectedDepart);
+  }
 
+  sortCourses(sortBy: string) {
+    this.loading = true;
+    this.cs.sortCourses(sortBy).subscribe(courses => {
+      this.allCourses = courses;
+      this.loading = false;
+    })
+  }
+
+  toggleAddingFilters() {
+    this.addingFilters = !this.addingFilters;
+  }
+
+  clearAll() {
+    this.tags = [];
+  }
+  
+  clearTag() {
+    this.tags = [];
+  }
 }

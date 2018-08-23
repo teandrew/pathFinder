@@ -8,38 +8,70 @@
 			<div class="search-title mb-30">
 				<h2 class="title is-2">Explore Courses</h2>
 			</div>
-			<div class="search-input mb-20 columns">
+			<div class="search-inputs mb-20">
+				<!--
 				<div class="control column">
 					<input class="input" #keyword (input)="search(keyword.value)" placeholder="{{ searchBy }}" type="text" value="{{searchVal}}">
 				</div>
 				<div class="control column is-two-fifths">
 					<div class="buttons has-addons">
-						<span *ngFor="let crit of searchCriteria" (click)="setActive(crit)"class="button" [ngClass]="{'is-link': crit.isActive }">{{ crit.by }}</span> 
+						<span *ngFor="let crit of searchCriteria" (click)="setActive(crit)" class="button" [ngClass]="{'is-link': crit.isActive }">{{ crit.by }}</span>
 					</div>
 				</div>
-			</div>
-			<div *ngIf="searchVal" class="mb-5">
-				<div>
-					<span class="tag is-dark">
-            {{ searchVal }}
-            <a style="margin-left: 5px; color: white;" (click)="clearSearch()"><i class="fas fa-times-circle"></i></a>
-          </span>
+        -->
+				<div class="search-input columns">
+					<div class="select-cont column">
+						<div class="select-filt" [class.active]="!showOptions" (click)="setShowOptions()">
+							<span>{{ selectedDepart }}</span>
+						</div>
 
+						<ul class="dropdown-menu" [class.active]="showOptions" style="display: none;">
+							<li *ngFor="let depart of departments" (click)="selectDepart(depart.name)">
+								{{ depart.name }}
+							</li>
+						</ul>
+					</div>
+					<div class="column is-one-fifth">
+						<a class="button" (click)="toggleAddingFilters()">
+							<span class="icon is-small">
+                <i class="fas fa-filter"></i>
+              </span>
+							<span>Filters</span>
+						</a>
+					</div>
+				</div>
+				<div *ngIf="tags.length" class="mb-5">
+					<div>
+						<span *ngFor="let tag of tags" class="tag is-dark">
+							{{ tag.name }}
+							<a style="margin-left: 5px; color: white;" (click)="clearTag()"><i class="fas fa-times-circle"></i></a>
+						</span>
+					</div>
+				</div>
+        <div *ngIf="addingFilters" class="">
+					<hr>
+					<label class="title is-6">Difficulty</label>
+					<span class="tag is-black">Bird</span>
+
+					<label class="title is-6">Credit Value</label>
+					<span class="tag is-black">0.5 credit</span>
+					<span class="tag is-black">1.0 credit</span>
 				</div>
 			</div>
-			<div class="level mb-5">
+
+			<div class="level mb-10">
 				<div class="level-left">
 					<span><i class="fas fa-book-open"></i> {{ numOfCourses }} of {{ numOfCourses }} courses</span>
 				</div>
 				<div class="level-right">
-          <div> Sort by:
-            <span class="sort-crit">Rating</span>
-            <span class="sort-crit">Code</span>
-            <span class="sort-crit">Name</span>
-          </div>
+					<div> Sort by:
+						<span class="sort-crit" (click)="sort('name')">Rating</span>
+						<span class="sort-crit">Code</span>
+						<span class="sort-crit">Name</span>
+					</div>
 				</div>
 			</div>
-      <!--
+			<!--
 			<table class="search-res table">
 				<thead>
 					<tr>
@@ -61,16 +93,16 @@
 				</tbody>
 			</table>
       -->
-      <div class="search-res table">
-        <div class="columns header">
-          <span class="column is-2">RATING</span>
-          <span class="column is-one-fifths">COURSE CODE</span>
-          <span class="column is-4">NAME</span>
-          <span class="column">DEPARTMENT</span>   
-        </div>
+			<div class="search-res table">
+				<div class="columns header">
+					<span class="column is-2">RATING</span>
+					<span class="column is-one-fifths">COURSE CODE</span>
+					<span class="column is-4">NAME</span>
+					<span class="column">DEPARTMENT</span>
+				</div>
 
-        <ng-container *ngIf="!loading else searching">
-					<div class="columns course" *ngFor="let course of allCourses">
+				<ng-container *ngIf="!loading else searching">
+					<div class="columns course" *ngFor="let course of allCourses" routerLink="/course/{{course.code}}">
 						<span class="column is-2">RATING</span>
 						<span class="column is-one-fifths">{{ course?.code }}</span>
 						<span class="column is-4">{{ course?.name }}</span>
@@ -78,12 +110,16 @@
 					</div>
 				</ng-container>
 				<ng-template #searching>
-          <div class="columns loading-cont">
-            <div class="loading"><div></div><div></div><div></div></div>
+					<div class="columns loading-cont">
+						<div class="loading">
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
 					</div>
 				</ng-template>
-      </div>
 
+			</div>
 		</div>
 	</div>
 </section>
