@@ -37,6 +37,7 @@ export class ExploreComponent implements OnInit {
     this.loading = true;
     this.cs.getCourses(campus, department).subscribe(courses => {
       this.allCourses = courses;
+      this.numOfCourses = courses.length;
       this.loading = false;
     })
   }

@@ -1,16 +1,18 @@
 <div>
-    <!--<add-review></add-review>-->
-    <add-review></add-review>
-    <div>
+    <ng-container *ngIf="!userReviewed">
+        <!--<add-review></add-review>-->
+        <add-review [course_id]="course.code"></add-review>
+    </ng-container>
+    <ng-container *ngIf="reviews.length else noReview">
         <!-- ng For let review of reviews-->
         <div *ngFor="let review of reviews">
             <!-- Individual Review -->
             <review [review]="review"></review>
         </div>
-    </div>
+    </ng-container>
 
     <ng-template #noReview>
-        <div>
+        <div class="box">
             <p>No one has left a review yet</p>
         </div>
     </ng-template>

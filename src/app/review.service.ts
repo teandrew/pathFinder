@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { Review } from './models/schema';
 
 @Injectable()
 export class ReviewService {
@@ -18,7 +20,7 @@ export class ReviewService {
         return cookieCollection.add({'_id': c_id}).catch(err => { return console.error(err)});
     }
 
-    addReview(review: Object): any {
+    addReview(review: Object): Promise<firebase.firestore.DocumentReference> {
         const reviewsCollection = this.db.collection('reviews');
         let cookie_id = this.cs.get('c_id');
         let review_copy = review;
@@ -29,25 +31,7 @@ export class ReviewService {
         
         review_copy['reviewedBy'] = cookie_id;
 
-        return reviewsCollection.add(review_copy).then(review => {
-            return this.addCookie(cookie_id);
-        })
-        .catch(er => console.error(er));
-    }
-
-    add(review: Object): any {
-        let cookie_id = this.cs.get('c_id');
-        let review_copy = review;
-        
-        if (cookie_id == '')
-            cookie_id = this.createCookieID();
-        
-        review_copy['reviewedBy'] = cookie_id;
-        console.log(review);
-    } 
-
-    checkCookie() {
-        return this.cs.check('c_id');
+        return reviewsCollection.add(review_copy);
     }
 
     createCookieID(): string {
@@ -60,12 +44,8 @@ export class ReviewService {
         return cid;
     }
     
-    getCookie() {
-        return this.cs.get('c_id');
-    }
-
-    getCourseReviews(course_id: string) {
-        const courseReviews = this.db.collection('reviews', ref => ref.where('course_id', '==', course_id));
+    getCourseReviews(course_id: string): Observable<Review[]> {
+        const courseReviews = this.db.collection<Review>('reviews', ref => ref.where('course_id', '==', course_id));
         return courseReviews.valueChanges();
     }
 
@@ -73,27 +53,4 @@ export class ReviewService {
         const instCollection = this.db.collection('institutions');
         return instCollection.valueChanges();
     }
-
-    getReviews() {
-        const reviewsCollection = this.db.collection('reviews');
-        return reviewsCollection.valueChanges();
-    }
-
-    hasUserReviewed(): boolean {
-        let userHasReviewed = false;
-
-        if (!this.cs.check('c_id'))
-            return userHasReviewed;
-        
-        let userReviews = this.db.collection('reviews',
-            ref => ref.where('reviewee_id', '==', this.cs.get('c_id')))
-
-        userReviews.valueChanges().subscribe(userReviewList => {
-            if (userReviewList.length != 0)
-                userHasReviewed = true;
-        });
-
-        return userHasReviewed;
-    }
-
 }

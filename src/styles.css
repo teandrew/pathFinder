@@ -1,130 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-.dropdown-menu {
-  border: 1px solid rgba(204, 204, 204);
-  padding: 0;
-  list-style: none;
-  position: absolute;
-  background-color: #fff;
-  width: 100%;
-  left: 0;
-  margin-top: 1px;
-  box-shadow: 0 1px 2px rgb(204, 204, 204);
-  border-radius: 0 1px 5px 5px;
-  overflow: hidden;
-  display: none;
-  overflow-y: auto;
-  z-index: 9;
-  animation: fade 0.2s ease;
-}
-
-.dropdown-menu.active {
-  display: block !important;
-}
-
-.dropdown-menu li:hover {
-  background-color: #dbdbdb;
-  border-left: 4px solid #3c4551;
-}
-
-.dropdown-menu li {
-  cursor: pointer;
-  padding: 10px;
-  transition: all 0.2s ease-in-out;
-}
-
-.search-input .button {
-  height: 100%;
-  width: 100%;
-  box-shadow: 0 1px 6px rgba(57,73,76,0.35);
-}
-
-@keyframes fade {
-  0% { opacity: 0 }
-  100% { opacity: 1 }
-}
-
-.select-cont {
-  display: inline-block;
-  position: relative;
-  color: #474747;
-  text-align: left;
-}
-
-.select-filt {
-  border: 1px solid rgba(204, 204, 204);
-  border-radius: 5px;
-  box-shadow: 0 0 2px rgb(204, 204, 204);
-  transition: all .5s ease;
-  cursor: pointer;
-  padding: 10px;
-}
-
-.select-filt::before {
-  content: "";
-  position: absolute;
-  top: 1.5em;
-  right: 1em;
-  width: 0.75em;
-  height: 0.75em;
-  border: 0.2em solid #86919a;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-  transition: all 275ms;
-}
-
-.select-filt::before {
-  border-left: none;
-  border-top: none;
-  right: 1.6em;
-  top: 1.6em;
-}
-
-.loading {
-  margin: 0 auto;
-}
-
-.loading div {
-  width: 15px;
-  height: 15px;
-  border-radius: 50px;
-  display: inline-block;
-  margin: 0 5px 0 5px;
-  transition: 0.5s all ease;
-}
-
-.loading div:nth-child(1) {
-  animation: rise 0.5s infinite alternate;
-  background-color: #005eff;
-}
-
-.loading div:nth-child(2) {
-  animation: rise 0.5s infinite alternate;
-  animation-delay: 0.2s;
-  background-color: #005eff;
-}
-
-.loading div:nth-child(3) {
-  animation: rise 0.5s infinite alternate;
-  animation-delay: 0.4s;
-  background-color: #005eff;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@keyframes enlarge {
-  0% { transform:  scale(1);}
-  50% { transform: scale(1.5); }
-  100% { transform: scale(1); }
-}
-
-@keyframes rise {
-  0% { transform:  translateY(4px);}
-  100% { transform: translateY(-4px)}
-}
-
 body {
   background-color: #efeff3;
   font-family: 'Lato', sans-serif;
@@ -137,6 +11,10 @@ section {
 /* NavBar */
 .navbar {
     background-color: #102E4B;
+}
+
+.navbar-brand {
+  cursor: pointer;
 }
 
 .navbar h1 {
@@ -214,8 +92,8 @@ section {
 .home-cont {
 }
 
-.slct-inst {
-  width: 55%;
+.slct-inst, .course-cont {
+  width: 90%;
   margin: 0 auto;
 }
 
@@ -344,7 +222,7 @@ section {
     border: none;
     border-radius: 50px 15px 15px 50px;
     cursor: pointer;
-    margin-bottom: 20px;
+    margin: 0 auto 20px auto;
     transition: all .3s ease-in-out;
     width: 600px;
 }
@@ -380,6 +258,132 @@ section {
 }
 
 /* Explore Courses */
+.dropdown-menu {
+  border: 1px solid rgba(204, 204, 204);
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  background-color: #fff;
+  width: 100%;
+  left: 0;
+  margin-top: 1px;
+  box-shadow: 0 1px 2px rgb(204, 204, 204);
+  border-radius: 0 1px 5px 5px;
+  overflow: hidden;
+  display: none;
+  overflow-y: auto;
+  z-index: 9;
+  animation: fade 0.2s ease;
+}
+
+.dropdown-menu.active {
+  display: block !important;
+}
+
+.dropdown-menu li:hover {
+  background-color: #dbdbdb;
+  border-left: 4px solid #3c4551;
+}
+
+.dropdown-menu li {
+  cursor: pointer;
+  padding: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.search-input .button {
+  height: 100%;
+  width: 100%;
+  box-shadow: 0 1px 6px rgba(57,73,76,0.35);
+}
+
+@keyframes fade {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
+}
+
+.select-cont {
+  display: inline-block;
+  position: relative;
+  color: #474747;
+  text-align: left;
+}
+
+.select-filt {
+  border: 1px solid rgba(204, 204, 204);
+  border-radius: 5px;
+  box-shadow: 0 0 2px rgb(204, 204, 204);
+  transition: all .5s ease;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.select-filt::before {
+  content: "";
+  position: absolute;
+  top: 1.5em;
+  right: 1em;
+  width: 0.75em;
+  height: 0.75em;
+  border: 0.2em solid #86919a;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  transition: all 275ms;
+}
+
+.select-filt::before {
+  border-left: none;
+  border-top: none;
+  right: 1.6em;
+  top: 1.6em;
+}
+
+.loading {
+  margin: 0 auto;
+}
+
+.loading div {
+  width: 15px;
+  height: 15px;
+  border-radius: 50px;
+  display: inline-block;
+  margin: 0 5px 0 5px;
+  transition: 0.5s all ease;
+}
+
+.loading div:nth-child(1) {
+  animation: rise 0.5s infinite alternate;
+  background-color: #005eff;
+}
+
+.loading div:nth-child(2) {
+  animation: rise 0.5s infinite alternate;
+  animation-delay: 0.2s;
+  background-color: #005eff;
+}
+
+.loading div:nth-child(3) {
+  animation: rise 0.5s infinite alternate;
+  animation-delay: 0.4s;
+  background-color: #005eff;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes enlarge {
+  0% { transform:  scale(1);}
+  50% { transform: scale(1.5); }
+  100% { transform: scale(1); }
+}
+
+@keyframes rise {
+  0% { transform:  translateY(4px);}
+  100% { transform: translateY(-4px)}
+}
+
 .search-cont {
   width: 875px;
   margin: 0 auto;

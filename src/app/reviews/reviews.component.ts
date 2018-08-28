@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { Course, Review} from '../models/schema';
 
 import { ReviewService } from '../review.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
     selector: 'reviews',
@@ -8,19 +11,21 @@ import { ReviewService } from '../review.service';
 })
 
 export class ReviewsComponent implements OnInit {
-    reviews: Object;
+    @Input() course: Course;
+    reviews: Review[];
+    userReviewed: boolean;
 
-    constructor(private rs: ReviewService) {}
+    constructor(private rs: ReviewService, private cs: CookieService) {}
 
     ngOnInit() {
-        this.rs.getReviews().subscribe(data => {
-            this.reviews = data;
+        this.rs.getCourseReviews(this.course.code).subscribe(data => { 
+            this.reviews = data;          
+            if (this.cs.get('c_id'))
+                this.userReviewed = data
+                            .find(review =>
+                                review['reviewedBy'] == this.cs.get('c_id')) ? true : false; 
         })
+        // this.hasUserReviewed();
     }
 
-    addReview() {
-        const review = { code: 'CSCTETS' }
-        this.rs.addReview(review);
-    }
-    
 }

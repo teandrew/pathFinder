@@ -1,3 +1,7 @@
-<div>
-    
+<div class="box">
+    <span> {{ review.term }} {{ review.year }} </span>
+    <span> {{ review.professor }}</span>
+    <span> {{ review.interesting }}</span>
+    <span> {{ review.difficulty }}</span>
+    <span *ngIf="review.comment">" {{ review.comment }} "</span>
 </div>

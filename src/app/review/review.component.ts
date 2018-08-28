@@ -1,12 +1,19 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
     selector: 'review',
     templateUrl: './review.component.html'
 })
 
-export class ReviewComponent {
+export class ReviewComponent implements OnInit {
     @Input() review: any;
 
-    
+    constructor() {
+    }
+
+    ngOnInit() {
+        console.log(this.review);
+    }
+
+
 }
