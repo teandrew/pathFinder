@@ -3,7 +3,7 @@
         <!--<add-review></add-review>-->
         <add-review [course_id]="course.code"></add-review>
     </ng-container>
-    <ng-container *ngIf="reviews.length else noReview">
+    <ng-container *ngIf="reviews && reviews.length else noReview">
         <!-- ng For let review of reviews-->
         <div *ngFor="let review of reviews">
             <!-- Individual Review -->
