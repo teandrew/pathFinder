@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CourseService } from '../course.service';
 
-import { Observable, BehaviorSubject, combineLatest, Subject, from } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap, tap} from 'rxjs/operators';
+import { faBookOpen } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'explore',
@@ -11,8 +10,10 @@ import { debounceTime, distinctUntilChanged, switchMap, tap} from 'rxjs/operator
 })
 
 export class ExploreComponent implements OnInit {
+  faBookOpen = faBookOpen;
   addingFilters = false;
   allCourses: any[];
+  avgRating = 0;
   campus: string = '';
   departments: any[];
   loading: boolean;
@@ -28,9 +29,10 @@ export class ExploreComponent implements OnInit {
   ngOnInit() {
     this.ar.params.subscribe((params: Params) => {
       this.campus = params['campus'];
-    }) 
-    this.cs.getDepartments()
+      this.cs.getDepartments(this.campus)
       .subscribe(departs => this.departments = departs); 
+    }) 
+    
   }
 
   getCourses(campus: string, department: string) {
@@ -39,7 +41,7 @@ export class ExploreComponent implements OnInit {
       this.allCourses = courses;
       this.numOfCourses = courses.length;
       this.loading = false;
-    })
+    });
   }
 
   setShowOptions() {

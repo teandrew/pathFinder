@@ -2,26 +2,28 @@ import { Component } from '@angular/core';
 import { PLATFORM_ID, APP_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  faEnvelope = faEnvelope;
   public showFeedback: boolean = false;
   public feedbackEmotes = [
     {
-      class: 'far fa-grin-beam fa-3x',
+      class: 'grin',
       type: 'happy',
       isActive: false
     },
     {
-      class: 'far fa-meh fa-3x',
+      class: 'meh',
       type: 'meh',
       isActive: false
     },
     {
-      class: 'far fa-frown fa-3x',
+      class: 'frown',
       type: 'sad',
       isActive: false
     }

@@ -1,13 +1,18 @@
 <section class="section">
-    <div class="course-cont">
+    <div class="course-cont container">
         <div class="box">
             <h2 class="title is-2"> {{ course?.name }}</h2>
             <h3 class="title is-3"> {{ course?.code }}</h3>
-
-            <p class="">{{ course?.description }}</p>
+            
+            <label>Department:</label>
+            <span class="">{{ course?.department }}</span>    
+            <label>Description:</label>
+            <span class="">{{ course?.description }}</span>
+            <label>Pre-requisites:</label>
+            <span class="">{{ course?.prerequisite }}</span>
+            <label>Exclusion:</label>
+            <span class="">{{ course?.exclusion }}</span>
         </div>
-
-        
         <hr>
         <!-- Review Component -->
         <ng-container *ngIf="course">

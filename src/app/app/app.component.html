@@ -8,13 +8,14 @@
             <span *ngFor="let emote of feedbackEmotes"
             class="feedback-emote column"
             [ngClass]="{'active': emote.isActive}" (click)="setToActive(emote)">
-              <i class="{{ emote.class }}"></i></span>
+                <fa-icon icon="{{ emote.class }}" size="3x"></fa-icon>
+            </span>  
           </div>
           <label>Comments</label>
           <textarea class="textarea mb-5" placeholder="Let me know what this tool could improve on!"></textarea>
         </div>
         <a class="feedback-btn" (click)="triggerFeedback()">
-            <span><i class="fas fa-envelope fa-2x"></i></span>
+            <span><fa-icon icon="envelope" size="2x"></fa-icon></span>
         </a>
     </div>
 </router-outlet>
