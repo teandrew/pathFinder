@@ -1,39 +1,48 @@
-<div class="box">
+<div class="add-review-cont">
     <form [formGroup]="reviewForm">
-        <div>
-            <label>Term:*</label>
-            <select formControlName="term">
-                <option>Fall</option>
-                <option>Winter</option>
-                <option>Summer</option>
-            </select>
+        <div class="section-ratings">
+            <div>
+                <label>Interesting:</label>
+                <input formControlName="interesting" min="1" max="5" value="3" type="range">
+                <span class="rating-val">{{ reviewForm.value.interesting }}</span>
+            </div>
+            <div>
+                <label>Difficulty:</label>
+                <input formControlName="difficulty" min="1" max="5" value="3" type="range">
+                <span class="rating-val">{{ reviewForm.value.difficulty }}</span>
+            </div>
         </div>
-        <div>
-            <label>Year:*</label>
-            <input formControlName="year" minlength="4" maxlength="4" type="text" pattern="[0-9]{4}" placeholder="e.g. 2018">
-        </div>
-        <div>
-            <label>Professor:*</label>
-            <input formControlName="professor" type="text" pattern="^[a-zA-Z'-]{1,}" placeholder="e.g Larry Zhang">
-        </div>
-        <div>
-            <label>Interesting:</label>
-            <input formControlName="interesting" min="1" max="5" value="3" type="range">
-            <span>{{ reviewForm.value.interesting }}</span>
-        </div>
-        <div>
-            <label>Difficulty:</label>
-            <input formControlName="difficulty" min="1" max="5" value="3" type="range">
-            <span>{{ reviewForm.value.difficulty }}</span>
-        </div>
-        <div>
-            <label>Comment:</label>
-            <textarea formControlName="comment" type="text"></textarea>
+        <div class="add-info">
+            <div class="section-other">
+                    <div>
+                        <label>Term:*</label>
+                        <select class="select" formControlName="term">
+                            <option>Fall</option>
+                            <option>Winter</option>
+                            <option>Summer</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Year:*</label>
+                        <input class="input" formControlName="year" minlength="4" maxlength="4" type="text" pattern="[0-9]{4}" placeholder="e.g. 2018">
+                    </div>
+                    <div>
+                        <label>Professor:*</label>
+                        <input class="input" formControlName="professor" type="text" pattern="^[a-zA-Z'-]{1,}" placeholder="e.g Larry Zhang">
+                    </div>
+            </div>
+            <div class="section-comment">
+                <div>
+                    <label>Comment:</label>
+                    <textarea class="textarea" formControlName="comment" placeholder="How was the course for you?" type="text"></textarea>
+                </div>
+            </div>
         </div>
     </form>
-    <button (click)="submitReview()" [disabled]="!reviewForm.valid">Submit Review</button>
 </div>
-
-
-<p> Form: {{ reviewForm.value | json }}</p>
-<p> Valid: {{ reviewForm.valid }}</p>
+<div class="level">
+    <div class="level-left"></div>
+    <div class="level-right review-btn">
+            <button class="button is-success" (click)="submitReview()" [disabled]="!reviewForm.valid">Review</button>
+    </div>
+</div>

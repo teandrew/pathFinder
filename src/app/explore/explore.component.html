@@ -24,14 +24,18 @@
 						<div class="select-filt" [class.active]="!showOptions" (click)="setShowOptions()">
 							<span>{{ selectedDepart }}</span>
 						</div>
-
-						<ul class="dropdown-menu" [class.active]="showOptions" style="display: none;">
-							<li (click)="selectDepart('Any')">Any</li>
-							<li *ngFor="let depart of departments" (click)="selectDepart(depart.name)">
-								{{ depart.name }}
-							</li>
-						</ul>
+						<div class="dropdown-menu" [class.active]="showOptions">
+							<div style="height:400px; overflow: scroll;">
+								<ul>
+									<li (click)="selectDepart('Any')">Any</li>
+									<li *ngFor="let depart of departments" (click)="selectDepart(depart.title)">
+										{{ depart.title }}
+									</li>
+								</ul>
+							</div>
+						</div>
 					</div>
+					<!--
 					<div class="column is-one-fifth">
 						<a class="button" (click)="toggleAddingFilters()">
 							<span class="icon is-small">
@@ -40,7 +44,9 @@
 							<span>Filters</span>
 						</a>
 					</div>
+				-->
 				</div>
+				<!--
 				<div *ngIf="tags.length" class="mb-5">
 					<div>
 						<span *ngFor="let tag of tags" class="tag is-dark">
@@ -49,6 +55,7 @@
 						</span>
 					</div>
 				</div>
+				-->
         <div *ngIf="addingFilters" class="">
 					<hr>
 					<label class="title is-6">Difficulty</label>
@@ -59,17 +66,19 @@
 					<span class="tag is-black">1.0 credit</span>
 				</div>
 			</div>
-
+		
 			<div class="level mb-10">
 				<div class="level-left">
-					<span><i class="fas fa-book-open"></i> {{ numOfCourses }} courses</span>
+					<span><fa-icon [icon]="faBookOpen"></fa-icon> {{ numOfCourses }} courses</span>
 				</div>
 				<div class="level-right">
+					<!--
 					<div> Sort by:
 						<span class="sort-crit" (click)="sort('name')">Rating</span>
 						<span class="sort-crit">Code</span>
 						<span class="sort-crit">Name</span>
 					</div>
+					-->
 				</div>
 			</div>
 			<!--
@@ -95,19 +104,15 @@
 			</table>
       -->
 			<div class="search-res table">
-				<div class="columns header">
-					<span class="column is-2">RATING</span>
-					<span class="column is-one-fifths">COURSE CODE</span>
-					<span class="column is-4">NAME</span>
-					<span class="column">DEPARTMENT</span>
-				</div>
-
 				<ng-container *ngIf="!loading else searching">
-					<div class="columns course" *ngFor="let course of allCourses" routerLink="/course/{{course.code}}">
+					<div class="columns header">
 						<span class="column is-2">RATING</span>
-						<span class="column is-one-fifths">{{ course?.code }}</span>
-						<span class="column is-4">{{ course?.name }}</span>
-						<span class="column">{{ course?.department }}</span>
+						<span class="column is-one-fifths">COURSE CODE</span>
+						<span class="column is-4">NAME</span>
+						<span class="column">DEPARTMENT</span>
+					</div>
+					<div *ngFor="let course of allCourses">
+						<course-result [course]="course"></course-result>
 					</div>
 				</ng-container>
 				<ng-template #searching>

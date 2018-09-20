@@ -28,6 +28,8 @@ export class ReviewService {
         // Create cookie if not already done
         if (cookie_id == '')
             cookie_id = this.createCookieID();
+            
+        this.addCookie(cookie_id);
         
         review_copy['reviewedBy'] = cookie_id;
 

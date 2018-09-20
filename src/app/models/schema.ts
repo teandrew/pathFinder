@@ -2,7 +2,14 @@ export class Course {
     code: string;
     department: string;
     description: string;
+    name: string;
+    prerequisite: string;
+    exclusion: string;
     institution: string;
+    ratings: {
+        average: number,
+        reviewCount: number
+    }
 }
 
 export class Review {

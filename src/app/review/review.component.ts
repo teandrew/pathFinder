@@ -8,12 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ReviewComponent implements OnInit {
     @Input() review: any;
 
-    constructor() {
-    }
+    constructor() {}
 
-    ngOnInit() {
-        console.log(this.review);
-    }
-
-
+    ngOnInit() {}
 }

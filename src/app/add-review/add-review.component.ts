@@ -29,6 +29,9 @@ export class AddReviewComponent {
 
     submitReview() {
         this.reviewForm.value['course_id'] = this.course_id;    
+        if (this.reviewForm.value['comment'] == '')
+            this.reviewForm.value['comment'] = 'None'
+
         this.rs.addReview(this.reviewForm.value)
             .then(review => {
                 this.resetFields();
@@ -36,7 +39,7 @@ export class AddReviewComponent {
             })
             .catch(error => alert('Something went wrong! Try again.'));
     }
-
+    
     resetFields() {
         this.reviewForm.value['comment'] = '';
         this.reviewForm.value['difficulty'] = 3;

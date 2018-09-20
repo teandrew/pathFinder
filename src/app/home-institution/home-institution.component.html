@@ -1,26 +1,13 @@
 <section class="home-cont section">
 	<div class="slct-inst">
 		<div class="mb-30" style="text-align: center;">
-			<h1 class="title is-1">University of Toronto Course</h1>
+			<h1 class="title is-1">University of Toronto Course Reviews</h1>
 			<p class="subtitle is-4">Know exactly what you are signing up for.</p>
 		</div>
 		<div class="">
 			<div class="mb-30" style="text-align: center;">
 				<h2 class="title is-2">Select Your Campus:</h2>
 			</div>
-			<!--
-            <div class="inst-select-wrapper">
-                <div class="inst-select" (click)="triggerOpen()" [ngClass]="{'opened': open}">
-                    <span class="inst-select-trigger">{{ selectedUni }}</span>
-                    <div class="inst-options">
-                        <span class="inst-option" #utm value="U" (click)="selectCampus(utm.value)">University of Toronto Mississauga</span>
-                        <span class="inst-option" #utsc (click)="selectCampus(utsc.value)">University of Toronto Scarborough</span>
-                        <span class="inst-option" #utsg (click)="selectCampus(utsg.value)">University of Toronto St. George</span>
-                    </div>
-                </div>
-            </div>
-            <button class="button is-warning is-medium"> Go </button>
-            -->
 			<div class="campus-options">
 				<div class="campus-option" routerLink="/explore/UTM">
 					<div class="campus-short">
@@ -51,8 +38,4 @@
 			</div>
 		</div>
 	</div>
-	<button class="feedback-btn">
-        <span><i class="fas fa-envelope fa-2x"></i></span>
-    </button>
-
 </section>

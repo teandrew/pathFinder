@@ -17,14 +17,25 @@ import { AddReviewComponent } from '../add-review/add-review.component';
 import { AppComponent } from '../app/app.component';
 import { AppNavComponent } from '../app-nav/app-nav.component';
 import { CourseComponent } from '../course/course.component';
+import { CourseResultComponent } from '../course-result/course-result.component';
+import { ExploreComponent } from '../explore/explore.component';
 import { HomeInstitutionComponent } from '../home-institution/home-institution.component';
 import { NotFoundComponent } from '../not-found/not-found.component'; 
 import { ReviewsComponent } from '../reviews/reviews.component';
 import { ReviewComponent } from '../review/review.component';
 
+// Styling
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+library.add(fas);
+
 // Environment
-import { environment } from '../../environments/environment';
-import { ExploreComponent } from '../explore/explore.component';
+import { enableProdMode } from '@angular/core';
+import { environment } from '../../environments/environment.prod';
+
+if (environment.production)
+  enableProdMode();
 
 @NgModule({
   declarations: [
@@ -32,11 +43,12 @@ import { ExploreComponent } from '../explore/explore.component';
     AppComponent,
     AppNavComponent,
     CourseComponent,
+    CourseResultComponent,
+    ExploreComponent,
     HomeInstitutionComponent,
     NotFoundComponent,
     ReviewComponent,
     ReviewsComponent,
-    ExploreComponent
   ],
   imports: [
     AngularFireModule,
@@ -44,6 +56,7 @@ import { ExploreComponent } from '../explore/explore.component';
     AngularFirestoreModule,
     AppRoutingModule,
     BrowserModule,
+    FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule
   ],
