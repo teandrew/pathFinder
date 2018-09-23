@@ -1,12 +1,10 @@
 <div>
     <ng-container *ngIf="!userReviewed">
-        <!--<add-review></add-review>-->
         <add-review [course_id]="course.code"></add-review>
     </ng-container>
     <ng-container *ngIf="reviews && reviews.length else noReview">
-        <!-- ng For let review of reviews-->
+        <h1 class="title is-1">Feedbacks</h1>
         <div *ngFor="let review of reviews">
-            <!-- Individual Review -->
             <review [review]="review"></review>
         </div>
     </ng-container>

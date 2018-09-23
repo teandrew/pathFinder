@@ -1,25 +1,26 @@
-<div class="box">
+<div class="add-review-cont" style="max-width: 50% !important;">
     <div class="section-ratings">
         <div>
-            <label>Interesting</label>
+            <label>Interesting:</label>
             <span class="rating-val">{{ review.interesting }}</span>
         </div>
 
         <div>
-            <label>Difficulty</label>
+            <label>Difficulty:</label>
             <span class="rating-val">{{ review.difficulty }}</span>
         </div>
     </div>
+    <div class="add-info">
+        <div class="section-other">
+            <label>Term:</label>
+            <span>{{ review.term }} {{ review.year }}</span>
+            <label>Professor:</label>
+            <span>{{ review.professor }}</span>
+        </div>
 
-    <div class="section-other">
-        <label>Term:</label>
-        <span>{{ review.term }} {{ review.year }}</span>
-        <label>Professor:</label>
-        <span>{{ review.professor }}</span>
-    </div>
-
-    <div class="section-comment">
-        <label>Comment</label>
-        <span>{{ review.comment }}</span>
+        <div class="section-comment">
+            <label>Comment:</label>
+            <span>{{ review.comment }}</span>
+        </div>
     </div>
 </div>
