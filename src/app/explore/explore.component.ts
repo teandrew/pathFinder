@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { CourseService } from '../course.service';
+import { CourseService } from '../services/course.service';
 
 import { faBookOpen } from '@fortawesome/free-solid-svg-icons';
 

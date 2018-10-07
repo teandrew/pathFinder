@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
-import { Course, Review } from './models/schema';
+import { Course, Review } from '../models/schema';
 
 @Injectable()
 export class ReviewService {

@@ -9,8 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 // Services
 import { CookieService } from 'ngx-cookie-service';
-import { CourseService } from '../course.service';
-import { ReviewService } from '../review.service';
+import { CourseService } from '../services/course.service';
+import { ReviewService } from '../services/review.service';
 
 // Components
 import { AddReviewComponent } from '../add-review/add-review.component';

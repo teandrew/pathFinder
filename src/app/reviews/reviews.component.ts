@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { Course, Review} from '../models/schema';
 
-import { ReviewService } from '../review.service';
+import { ReviewService } from '../services/review.service';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({

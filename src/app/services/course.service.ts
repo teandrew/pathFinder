@@ -3,7 +3,7 @@ import { Injectable, Inject } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 
-import { Course } from './models/schema';
+import { Course } from '../models/schema';
 
 @Injectable() 
 export class CourseService {
