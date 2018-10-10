@@ -18,8 +18,10 @@ label {
   border-radius: 5px;
   color: white;
   margin-left: 5px;
+  font-size: 1.25rem;
   padding: 2px 8px 3px 8px;
 }
+
 
 .section-comment, .section-other {
   display: inline-block;
@@ -65,6 +67,11 @@ label {
   box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
   color: #4a4a4a;
   display: block;
+}
+
+/****** Review *******/
+.section-ratings div label, .section-ratings div span {
+  display: inline-block;
 }
 
 .section-other, .section-comment {
@@ -514,13 +521,9 @@ div .sort-crit:not(:first-child) {
   border-right: 1px solid #22272d;
 }
 
-.search-res .course span {
-  border: 1px solid #f1f1f1;
-}
-
 .search-res .course:hover {
   cursor: pointer;
-  background-color: #f1f1f1;
+  background-color: white;
 }
 
 .search-res thead th, .search-res .header {
@@ -529,17 +532,9 @@ div .sort-crit:not(:first-child) {
   color: #fff;
 }
 
-.search-res .header {
-  border-radius: 10px 10px 0 0;
-}
-
 .search-res .columns {
   margin-top: 0px;
   margin-bottom: 0px !important;
-}
-
-.search-res .course {
-  background-color: #fff;
 }
 
 .search-res thead th:first-child {
@@ -552,6 +547,28 @@ div .sort-crit:not(:first-child) {
 
 .search-res tbody tr {
   cursor: pointer;
+}
+
+.search-res .course {
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
+  color: #4a4a4a;
+  display: block;
+  padding: 1.25rem;
+}
+
+.course .column {
+  padding: 0px !important;
+}
+
+.course .ratings {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.course span {
+  font-size: 1rem;
 }
 
 .loading-cont {

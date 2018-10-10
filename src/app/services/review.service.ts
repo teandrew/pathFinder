@@ -24,20 +24,27 @@ export class ReviewService {
         const reviewsCollection = this.db.collection('reviews');
         let cookie_id = this.cs.get('c_id');
         let review_copy = review;
+        let review_date = new Date();
 
-        // Create cookie if not already done
         if (cookie_id == '')
             cookie_id = this.createCookieID();
             
         this.addCookie(cookie_id);
         
         review_copy['reviewedBy'] = cookie_id;
-
+        review_copy['dateReviewed'] = `${review_date.getMonth()}/${review_date.getDate()}/${review_date.getFullYear()}`;
+        
         return reviewsCollection.add(review_copy);
     }
 
-    updateCourseRating(course_id: string) {
-        const course_ref = this.db.doc<Course>('courses/' + course_id);
+    updateCourseRating(course_id: string, course_rating: Object, review: number) {
+        const course_ref = this.db.doc(`courses/${course_id}`);
+        course_ref.update({
+            'ratings': {
+                'average': course_rating['average'] + review,
+                'reviewCount': course_rating['reviewCount'] + 1
+            }
+        })
     }
 
     createCookieID(): string {

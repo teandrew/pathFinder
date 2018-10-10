@@ -1,6 +1,6 @@
 <div>
     <ng-container *ngIf="!userReviewed">
-        <add-review [course_id]="course.code"></add-review>
+        <add-review [course_id]="course.code" [course_rating]="course?.ratings"></add-review>
     </ng-container>
     <ng-container *ngIf="reviews && reviews.length else noReview">
         <h1 class="title is-1">Feedbacks</h1>

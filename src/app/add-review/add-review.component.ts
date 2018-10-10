@@ -10,6 +10,7 @@ import { courseYearValidator } from '../form-validators/courseYear.validator';
 
 export class AddReviewComponent {
     @Input() course_id;
+    @Input() course_rating;
     reviewForm: FormGroup;
 
     constructor(private rs: ReviewService, private fb: FormBuilder) {
@@ -35,6 +36,11 @@ export class AddReviewComponent {
         this.rs.addReview(this.reviewForm.value)
             .then(review => {
                 this.resetFields();
+                this.rs.updateCourseRating(
+                    this.course_id,
+                    this.course_rating,
+                    this.reviewForm.value['interesting'] + this.reviewForm.value['difficulty']
+                    )
                 console.log('Review successfully created!');
             })
             .catch(error => alert('Something went wrong! Try again.'));

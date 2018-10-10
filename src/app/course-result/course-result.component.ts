@@ -14,6 +14,10 @@ export class CourseResultComponent implements OnInit {
 
     ngOnInit () {
         if (this.course['ratings'].reviewCount != 0)
-            this.avgRating = Math.round(this.course['ratings'].average / this.course['ratings'].reviewCount).toFixed(1);
+            this.avgRating = Math
+                .round(
+                    this.course['ratings'].average /
+                    (2 * this.course['ratings'].reviewCount)
+                ).toFixed(1);
     }
 }

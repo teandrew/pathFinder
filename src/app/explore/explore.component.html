@@ -72,48 +72,22 @@
 					<span><fa-icon [icon]="faBookOpen"></fa-icon> {{ numOfCourses }} courses</span>
 				</div>
 				<div class="level-right">
-					<!--
-					<div> Sort by:
-						<span class="sort-crit" (click)="sort('name')">Rating</span>
-						<span class="sort-crit">Code</span>
-						<span class="sort-crit">Name</span>
-					</div>
-					-->
 				</div>
 			</div>
-			<!--
-			<table class="search-res table">
-				<thead>
-					<tr>
-						<th>COURSE CODE</th>
-						<th>COURSE NAME</th>
-						<th>DEPARTMENT</th>
-						<th>DESCRIPTION</th>
-						<th>RATING</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr *ngFor="let course of courses$ | async" routerLink="/course/{{course.code}}">
-						<td>{{ course?.code }}</td>
-						<td>{{ course?.name }}</td>
-						<td>{{ course?.department }}</td>
-						<td>{{ course?.description }}</td>
-						<td>4.5 (0)</td>
-					</tr>
-				</tbody>
-			</table>
-      -->
-			<div class="search-res table">
+			<div class="search-res">
 				<ng-container *ngIf="!loading else searching">
+					<!--
 					<div class="columns header">
 						<span class="column is-2">RATING</span>
 						<span class="column is-one-fifths">COURSE CODE</span>
 						<span class="column is-4">NAME</span>
 						<span class="column">DEPARTMENT</span>
 					</div>
-					<div *ngFor="let course of allCourses">
+					-->
+					<div *ngFor="let course of allCourses" style="margin-bottom: 10px;">
 						<course-result [course]="course"></course-result>
 					</div>
+					
 				</ng-container>
 				<ng-template #searching>
 					<div class="columns loading-cont">
@@ -124,8 +98,8 @@
 						</div>
 					</div>
 				</ng-template>
-
 			</div>
+
 		</div>
 	</div>
 </section>
