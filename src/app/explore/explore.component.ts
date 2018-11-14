@@ -6,7 +6,8 @@ import { faBookOpen } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'explore',
-  templateUrl: './explore.component.html'
+  templateUrl: './explore2.html'
+  //templateUrl: './explore.component.html'
 })
 
 export class ExploreComponent implements OnInit {
@@ -47,6 +48,7 @@ export class ExploreComponent implements OnInit {
   }
 
   selectDepart(val: string) {
+    console.log('here');
     this.selectedDepart = val;
     this.setShowOptions();
     this.getCourses(this.campus, this.selectedDepart);

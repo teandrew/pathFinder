@@ -1,0 +1,51 @@
+<section class="section">
+    <div><span>Campus: {{ campus }} </span>
+		<a href="">[change]</a>
+    </div>
+    
+    <div>
+        <div class="columns">
+            <div class="column is-one-quarter">
+                <div class="select-dept">
+                    <h1 class="title">Departments:</h1>
+                    <ul>
+                        <li (click)="selectDepart('Any')">Any</li>
+                        <li *ngFor="let depart of departments" (click)="selectDepart(depart.title)"> 
+                            {{ depart.title }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="column">
+                <div class="search-title mb-10">
+                    <h1 class="title">Explore Courses</h1>
+                </div>
+
+
+                <div class="level mb-10">
+                        <div class="level-left">
+                            <span><fa-icon [icon]="faBookOpen"></fa-icon> {{ numOfCourses }} courses</span>
+                        </div>
+                        <div class="level-right">
+                        </div>
+                    </div>
+                    <div class="search-res">
+                        <ng-container *ngIf="!loading else searching">
+                            <div *ngFor="let course of allCourses" style="margin-bottom: 10px;">
+                                <course-result [course]="course"></course-result>
+                            </div>   
+                        </ng-container>
+                        <ng-template #searching>
+                            <div class="columns loading-cont">
+                                <div class="loading">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
