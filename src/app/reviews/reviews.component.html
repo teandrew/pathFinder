@@ -3,9 +3,11 @@
         <add-review [course_id]="course.code" [course_rating]="course?.ratings"></add-review>
     </ng-container>
     <ng-container *ngIf="reviews && reviews.length else noReview">
-        <h1 class="title is-1">Feedbacks</h1>
-        <div *ngFor="let review of reviews">
-            <review [review]="review"></review>
+        <h2 class="title is-2">Feedbacks</h2>
+        <div class="columns">
+            <div class="column" *ngFor="let review of reviews">
+                <review [review]="review"></review>
+            </div>
         </div>
     </ng-container>
 

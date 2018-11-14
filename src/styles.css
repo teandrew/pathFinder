@@ -19,9 +19,20 @@ label {
   color: white;
   margin-left: 5px;
   font-size: 1.25rem;
+  font-weight: 700;
   padding: 2px 8px 3px 8px;
 }
 
+.rating-high {
+  background-color: green;
+}
+
+.rating-med {
+  background-color: yellow;
+}
+.rating-low {
+  background-color: red;
+}
 
 .section-comment, .section-other {
   display: inline-block;
@@ -165,7 +176,7 @@ label {
   resize: none !important;
 }
 
-.course-cont label {
+.course-cont .info-label {
   font-weight: 700;
   display: block;
   margin-top: 15px;
@@ -439,19 +450,19 @@ input[type=range] {
 
 .loading div:nth-child(1) {
   animation: rise 0.5s infinite alternate;
-  background-color: #005eff;
+  background-color: #4a4a4a;
 }
 
 .loading div:nth-child(2) {
   animation: rise 0.5s infinite alternate;
   animation-delay: 0.2s;
-  background-color: #005eff;
+  background-color: #4a4a4a;
 }
 
 .loading div:nth-child(3) {
   animation: rise 0.5s infinite alternate;
   animation-delay: 0.4s;
-  background-color: #005eff;
+  background-color: #4a4a4a;
 }
 
 @keyframes spin {

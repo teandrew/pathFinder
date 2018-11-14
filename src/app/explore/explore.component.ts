@@ -13,7 +13,6 @@ export class ExploreComponent implements OnInit {
   faBookOpen = faBookOpen;
   addingFilters = false;
   allCourses: any[];
-  avgRating = 0;
   campus: string = '';
   departments: any[];
   loading: boolean;
@@ -32,7 +31,6 @@ export class ExploreComponent implements OnInit {
       this.cs.getDepartments(this.campus)
       .subscribe(departs => this.departments = departs); 
     }) 
-    
   }
 
   getCourses(campus: string, department: string) {

@@ -1,4 +1,34 @@
-<div class="">
+<div class="box" style="border-radius: 20px;">
+    <div class="">
+        <div class="" style="position: relative; height: 25px;">
+            <span style="color: #9e9e9e; position: absolute; top:0; right:0;">{{ review.dateReviewed }}</span>
+        </div>
+    </div>
+    <div class="columns">
+        <div class="column">
+            <span>{{ review.term }} {{ review.year }}</span>
+            <br>
+            <span>{{ review.professor }}</span>
+        </div>
+        <div class="column">
+            <label>Interesting:</label>
+            <span class="rating-val" [ngClass]="{
+                'rating-high': review.interesting == 1,
+                'rating-med': review.interesting == 3,
+                'rating-low': review.interesting == 5}">{{ review.interesting }}</span>
+            <br>
+            <label>Difficulty:</label>
+            <span class="rating-val" [ngClass]="{
+                'rating-high': review.difficulty == 1,
+                'rating-med': review.difficulty == 3,
+                'rating-low': review.difficulty== 5}">{{ review.difficulty }}</span>
+        </div>
+    </div>
+    <label>Comment:</label>
+    <span>{{ review.comment }}</span>
+</div>
+
+<!--<div class="">
     <div class="section-ratings">
         <div>
             <label>Interesting:</label>
@@ -38,3 +68,5 @@
         </div>
     </div>
 </div>
+
+-->
